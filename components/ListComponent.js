@@ -42,7 +42,7 @@ class ListComponent extends Component {
   }
 
   componentDidMount() {
-    let url = 'http://hljback.shopshop.space/product/list';
+    let url = 'http://hljback.shopshop.space/product/list?limit=500';
     axios
       .get(url)
       .then(res => {
@@ -75,11 +75,12 @@ class ListComponent extends Component {
                 <Card
                   key={i}
                   title={u.title}
-                  image={theUrl}>
+                  image={{uri: theUrl}}
                 >
 
                   <Text style={{marginBottom: 10}}>
-                    hi
+                    u.price
+                    u.productUrl
                   </Text>
                   <Button
                       icon={{name: 'code'}}
