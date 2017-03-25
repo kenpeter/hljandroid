@@ -12,3 +12,5 @@ Srape seek.com.au data and display data on android phone with react native.
 * https://stackoverflow.com/questions/29642685/maintain-aspect-ratio-of-image-with-full-width-in-react-native
 * https://docs.expo.io/versions/v15.0.0/guides/building-standalone-apps.html
 * https://expo.io/@kenpeter/osmosis_seek_android
+
+* https://github.com/facebook/react-native/issues/384

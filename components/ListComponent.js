@@ -1,5 +1,9 @@
 // need react and component
 import React, { Component } from 'react';
+
+//
+import Spinner from 'react-native-loading-spinner-overlay';
+
 // text from native
 import {
   Text,
@@ -37,18 +41,23 @@ class ListComponent extends Component {
     super(props);
 
     this.state = {
-      lists: []
+      lists: [],
+      visible: false
     };
   }
 
   componentDidMount() {
-    let url = 'http://hljback.shopshop.space/product/list?limit=500';
+    let url = 'http://hljback.shopshop.space/product/list?limit=20';
     axios
       .get(url)
       .then(res => {
         // It uses data
-        this.setState({ lists: res.data });
+        this.setState({ lists: res.data});
       });
+  }
+
+  onButtonPress() {
+    console.log('button press');
   }
 
   render() {
@@ -64,6 +73,10 @@ class ListComponent extends Component {
           />
         </View>
 
+        <View style={{ flex: 1 }}>
+          <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#00000'}} />
+        </View>
+
         <View style={styles.container}>
           {
             this.state.lists.map((u, i) => {
@@ -75,18 +88,29 @@ class ListComponent extends Component {
                 <Card
                   key={i}
                   title={u.title}
-                  image={{uri: theUrl}}
                 >
 
-                  <Text style={{marginBottom: 10}}>
-                    u.price
-                    u.productUrl
-                  </Text>
+                  <View style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                    <Image
+                      width={Dimensions.get('window').width}
+                      source={ {uri: theUrl} }
+                    />
+                    <Text style={{marginBottom: 10}}>
+                      {u.price}
+                      {u.productUrl}
+                    </Text>
+                  </View>
+
                   <Button
-                      icon={{name: 'code'}}
-                      backgroundColor='#03A9F4'
-                      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                      title='VIEW NOW' />
+                    icon={{name: 'code'}}
+                    backgroundColor='#03A9F4'
+                    buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                    title='VIEW NOW'
+                    onPress={this.onButtonPress}
+                  />
                 </Card>
               );
             })
