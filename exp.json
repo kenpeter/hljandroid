@@ -1,0 +1,13 @@
+{
+   "name": "hljandroid",
+   "icon": "https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/news-128.png",
+   "version": "1.0.0",
+   "slug": "hljandroid",
+   "sdkVersion": "15.0.0",
+   "ios": {
+     "bundleIdentifier": "org.kenpeter.hljandroid"
+   },
+   "android": {
+     "package": "org.kenpeter.hljandroid"
+   }
+ }
