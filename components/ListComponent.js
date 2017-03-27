@@ -17,6 +17,9 @@ import {
 //
 import Image from 'react-native-scalable-image';
 
+//
+import { Actions } from 'react-native-router-flux';
+
 // card, list and button from react native element
 import { Card, ListItem, Button, Tile } from 'react-native-elements'
 
@@ -63,10 +66,6 @@ class ListComponent extends Component {
 
   }
 
-  viewProduct() {
-    console.log('view product');
-  }
-
   render() {
 
     return (
@@ -101,7 +100,7 @@ class ListComponent extends Component {
                   }}>
                     <Text style={{fontWeight: 'bold'}}>{u.title}</Text>
 
-                    <TouchableHighlight onPress={this.viewProduct}>
+                    <TouchableHighlight onPress={Actions.productComponent}>
                       <View style={{ width: Dimensions.get('window').width }}>
                         <FullWidthImage source={{uri: theUrl}} />
                       </View>
