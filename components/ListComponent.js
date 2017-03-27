@@ -48,8 +48,19 @@ class ListComponent extends Component {
       });
   }
 
-  buyNow() {
-    console.log('buy now');
+  // onPress => { () => buyNow(xxx) }
+  buyNow(url) {
+    //console.log('empty?');
+    //console.log(url);
+
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log('Don\'t know how to open URI: ' + url);
+      }
+    });
+
   }
 
   viewProduct() {
@@ -73,6 +84,7 @@ class ListComponent extends Component {
         <View style={{ margin: 15 }}>
           {
             this.state.lists.map((u, i) => {
+              const productUrl = u.productUrl;
               let theUrl = 'http://hljback.shopshop.space/imgs/' + u.productId + '/' + u.imgs[0];
               if(u.productId == null) {
                 theUrl = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Coming&w=350&h=150';
@@ -106,7 +118,7 @@ class ListComponent extends Component {
                     backgroundColor='#03A9F4'
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     title='BUY NOW'
-                    onPress={this.buyNow}
+                    onPress={ () => this.buyNow(productUrl) }
                   />
                 </Card>
               );
