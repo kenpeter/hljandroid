@@ -1,6 +1,6 @@
 ## Intro
 
-Srape seek.com.au data and display data on android phone with react native.
+Andoid app created with create-react-native-app. Display info from https://hlj.com
 
 ## Misc
 * https://facebook.github.io/react-native/docs/using-a-listview.html
