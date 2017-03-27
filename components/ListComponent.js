@@ -42,7 +42,7 @@ class ListComponent extends Component {
   }
 
   componentDidMount() {
-    let url = 'http://hljback.shopshop.space/product/list?limit=10';
+    let url = 'http://hljback.shopshop.space/product/list?skip=100&limit=100';
     axios
       .get(url)
       .then(res => {
