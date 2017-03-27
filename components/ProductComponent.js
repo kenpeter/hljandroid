@@ -5,7 +5,8 @@ export default class ProductComponent extends Component {
   render() {
     return (
       <View style={{margin: 128}}>
-        <Text >This is ProductComponent!</Text>
+        <Text>{this.props.id}</Text>
+        <Text>{this.props.productId}</Text>
       </View>
     )
   }

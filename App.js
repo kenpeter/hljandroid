@@ -10,8 +10,8 @@ export default class App extends React.Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="listComponent" component={ListComponent} title="ListComponent" initial={true} />
-          <Scene key="productComponent" component={ProductComponent} title="ProductComponent" />
+          <Scene key="listComponent" component={ListComponent} initial={true} />
+          <Scene key="productComponent" component={ProductComponent} />
         </Scene>
       </Router>
     );

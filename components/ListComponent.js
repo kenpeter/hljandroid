@@ -88,7 +88,8 @@ class ListComponent extends Component {
               if(u.productId == null) {
                 theUrl = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Coming&w=350&h=150';
               }
-              //console.log(theUrl);
+
+              const toProductComponent = () => Actions.productComponent({id: u._id, productId: u.productId});
 
               return (
                 <Card
@@ -100,7 +101,7 @@ class ListComponent extends Component {
                   }}>
                     <Text style={{fontWeight: 'bold'}}>{u.title}</Text>
 
-                    <TouchableHighlight onPress={Actions.productComponent}>
+                    <TouchableHighlight onPress={toProductComponent}>
                       <View style={{ width: Dimensions.get('window').width }}>
                         <FullWidthImage source={{uri: theUrl}} />
                       </View>
@@ -108,7 +109,6 @@ class ListComponent extends Component {
 
                     <Text style={{marginBottom: 10}}>
                       {u.price}
-                      {u.productUrl}
                     </Text>
                   </View>
 
