@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Linking } from 'react-native';
+import { Card, ListItem, Button, Tile } from 'react-native-elements'
 import Image from 'react-native-scalable-image';
 import axios from 'axios';
 
@@ -32,6 +33,21 @@ export default class ProductComponent extends Component {
       });
   }
 
+  buyNow(url) {
+    //console.log('empty?');
+    //console.log(url);
+
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log('Don\'t know how to open URI: ' + url);
+      }
+    });
+
+  }
+
+
   render() {
     //console.log('-- render --');
     //console.log(this.state.list);
@@ -55,12 +71,14 @@ export default class ProductComponent extends Component {
         let imgUrl = 'http://hljback.shopshop.space/imgs/' + this.props.productId + '/' + u;
         //console.log(imgUrl);
         return (
-          <View key={i}>
+          <Card key={i}>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image
               source={{ uri: imgUrl }}
               width={Dimensions.get('window').width}
             />
-          </View>
+            </View>
+          </Card>
         );
       });
     }
@@ -78,6 +96,16 @@ export default class ProductComponent extends Component {
         </View>
 
         { returnContent }
+
+        <Card>
+          <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='BUY NOW'
+            onPress={ () => this.buyNow(this.state.list.productUrl) }
+          />
+        </Card>
       </ScrollView>
     );
   }
