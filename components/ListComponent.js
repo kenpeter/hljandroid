@@ -44,7 +44,7 @@ class ListComponent extends Component {
 
   componentDidMount() {
     // init
-    let url = 'http://hljback.shopshop.space/product/list?skip=0&limit=10';
+    let url = 'http://hljback.shopshop.space/product/list?skip=0&limit=50';
     axios
       .get(url)
       .then(res => {
@@ -65,38 +65,36 @@ class ListComponent extends Component {
         console.log('Don\'t know how to open URI: ' + url);
       }
     });
-
   }
 
   loadMore() {
     //console.log('load more');
-    const limit = 10;
+    const limit = 50;
     const nextIndex = this.state.lists.length;
     let url = 'http://hljback.shopshop.space/product/list?skip='+ nextIndex + '&limit=' + limit;
 
     //test
-    console.log('--- load url ---');
-    console.log(url);
+    //console.log('--- load url ---');
+    //console.log(url);
 
     axios
       .get(url)
       .then(res => {
         let myLists = this.state.lists;
 
-        console.log('myLists');
-        console.log(myLists);
+        //console.log('myLists');
+        //console.log(myLists);
 
         myLists = myLists.concat(res.data);
 
-        console.log('new myLists');
-        console.log(myLists);
+        //console.log('new myLists');
+        //console.log(myLists);
 
         this.setState({ lists: myLists });
       });
   }
 
   render() {
-
     return (
       <ScrollView style={{backgroundColor: 'white'}}>
         <View style={{
