@@ -37,12 +37,14 @@ class ListComponent extends Component {
 
     this.state = {
       lists: [],
-      visible: false
+      visible: false,
+      isLoading: false
     };
   }
 
   componentDidMount() {
-    let url = 'http://hljback.shopshop.space/product/list?skip=100&limit=100';
+    // init
+    let url = 'http://hljback.shopshop.space/product/list?skip=0&limit=10';
     axios
       .get(url)
       .then(res => {
@@ -64,6 +66,33 @@ class ListComponent extends Component {
       }
     });
 
+  }
+
+  loadMore() {
+    //console.log('load more');
+    const limit = 10;
+    const nextIndex = this.state.lists.length;
+    let url = 'http://hljback.shopshop.space/product/list?skip='+ nextIndex + '&limit=' + limit;
+
+    //test
+    console.log('--- load url ---');
+    console.log(url);
+
+    axios
+      .get(url)
+      .then(res => {
+        let myLists = this.state.lists;
+
+        console.log('myLists');
+        console.log(myLists);
+
+        myLists = myLists.concat(res.data);
+
+        console.log('new myLists');
+        console.log(myLists);
+
+        this.setState({ lists: myLists });
+      });
   }
 
   render() {
@@ -124,6 +153,14 @@ class ListComponent extends Component {
             })
           }
         </View>
+
+        <Button
+          icon={{name: 'code'}}
+          backgroundColor='#cc3399'
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          title='LOAD MORE....'
+          onPress={ () => this.loadMore() }
+        />
       </ScrollView>
     );
   }
